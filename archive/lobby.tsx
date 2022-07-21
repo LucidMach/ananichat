@@ -6,7 +6,7 @@ import { auth } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import NavBar from "../components/NavBar";
-import RoomNav from "../components/RoomNav";
+import RoomNav from "./RoomNav";
 
 const JoinARoom: NextPage = () => {
   const [user, loading, error] = useAuthState(auth);

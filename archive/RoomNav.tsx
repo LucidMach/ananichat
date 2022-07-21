@@ -15,8 +15,8 @@ const RoomNav: React.FC = () => {
   useEffect(() => {
     if (roomMode === null) return;
     roomMode === 0
-      ? Router.push("/join-a-room")
-      : Router.push("/create-a-room");
+      ? Router.push("/rooms/join-a-room")
+      : Router.push("/rooms/create-a-room");
   }, [roomMode]);
 
   return (
