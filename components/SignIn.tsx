@@ -5,7 +5,7 @@ import Router from "next/router";
 const handleClick = async () => {
   signInWithPopup(auth, provider)
     .then(() => {
-      Router.push("/join-a-room");
+      Router.push("/lobby");
     })
     .catch((error) => {
       const errorCode = error.code;

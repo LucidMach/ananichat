@@ -47,7 +47,7 @@ const NavBar: React.FC<props> = ({ children }) => {
       </div>
       {menuActive ? (
         <DropMenu>
-          <Button text="Setting" handleClick={() => console.log("sadeyes")} />
+          {/* <Button text="Setting" handleClick={() => console.log("sadeyes")} /> */}
           <Button text="Sign Out" handleClick={() => signOutClick()} />
         </DropMenu>
       ) : (

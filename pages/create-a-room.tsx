@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
+
 import Image from "next/image";
 import { useState } from "react";
-
 import Button from "../components/Button";
 import Input from "../components/Input";
 import NavBar from "../components/NavBar";
 
-const JoinARoom: NextPage = () => {
+const CreateARoom: NextPage = () => {
   const [roomName, setRoomName] = useState<string>();
 
   return (
@@ -24,10 +24,10 @@ const JoinARoom: NextPage = () => {
         </h1>
       </NavBar>
       <div className="px-8 py-4 w-1/2 min-w-[300px] shadow-md flex flex-col justify-center items-center gap-4">
-        <h1 className="font-black ">JOIN A ROOM</h1>
+        <h1 className="font-black ">CREATE A ROOM</h1>
         <div className="">
           <h1 className="font-thin italic font-mono text-slate-700">
-            enter the name for the room
+            enter a name for the room
           </h1>
           <Input
             placeholder="eg: ananichat_room"
@@ -36,11 +36,11 @@ const JoinARoom: NextPage = () => {
           />
         </div>
         <div className="w-2/5">
-          <Button text="join" handleClick={() => console.log(roomName)} />
+          <Button text="create" handleClick={() => console.log(roomName)} />
         </div>
       </div>
     </div>
   );
 };
 
-export default JoinARoom;
+export default CreateARoom;
