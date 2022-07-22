@@ -6,6 +6,7 @@ const Rooms: React.FC = () => {
   useEffect(() => {
     Router.push("/lobby");
   }, []);
+
   return (
     <div className="h-full w-full flex justify-center items-center flex-col gap-2">
       <Spinner />

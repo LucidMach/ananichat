@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import Image from "next/image";
+import Router from "next/router";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
 
 import SignIn from "../components/SignIn";
 import Spinner from "../components/Spinner";
-import Router from "next/router";
 
 const Home: NextPage = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -24,7 +24,6 @@ const Home: NextPage = () => {
           <SignIn />
         </>
       );
-    // nilesh
   };
 
   return (
