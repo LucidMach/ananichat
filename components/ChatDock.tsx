@@ -4,9 +4,21 @@ import Input from "./Input";
 
 const ChatDock: React.FC = () => {
   const [msg, setMsg] = useState<string>();
+
+  const handleEnter = () => {
+    console.log(msg);
+    setMsg("");
+  };
+
   return (
     <div className="absolute bottom-0 flex flex-col w-full shadow-inner border-y-4">
-      <div className="flex w-full justify-between items-center px-8 py-4 gap-4">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleEnter();
+        }}
+        className="flex w-full justify-between items-center px-8 py-4 gap-4"
+      >
         <div className="border-2">
           <Button
             text="invite"
@@ -21,14 +33,9 @@ const ChatDock: React.FC = () => {
           placeholder="enter your message..."
         />
         <div className="border-2 bg-slate-500 text-white">
-          <Button
-            text="Send"
-            handleClick={() => {
-              console.log(msg);
-            }}
-          />
+          <Button text="Send" handleClick={handleEnter} />
         </div>
-      </div>
+      </form>
     </div>
   );
 };

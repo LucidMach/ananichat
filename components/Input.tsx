@@ -29,6 +29,7 @@ const Input: React.FC<props> = ({ placeholder, setValue, value }) => {
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
       "
         placeholder={placeholder}
+        value={value}
         onChange={(e) => setValue(e.currentTarget.value)}
       />
     </>

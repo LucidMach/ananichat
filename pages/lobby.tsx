@@ -3,9 +3,9 @@ import Image from "next/image";
 import Router from "next/router";
 import { useState } from "react";
 
-import Button from "../../components/Button";
-import Input from "../../components/Input";
-import NavBar from "../../components/NavBar";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import NavBar from "../components/NavBar";
 
 const JoinARoom: NextPage = () => {
   const [roomName, setRoomName] = useState<string>();
