@@ -9,6 +9,7 @@ import chatdata from "../../interfaces/chatdata";
 
 import { auth } from "../../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import ChatBoard from "../../components/ChatBoard";
 
 const ws_url = "ws://127.0.0.1:5000";
 
@@ -26,6 +27,7 @@ so we make 2 connections now
 const RoomPage: NextPage = () => {
   const [user, loading, error] = useAuthState(auth);
   const [newText, setNewText] = useState<chatdata>();
+  const [chat, setChat] = useState<chatdata[]>();
 
   // listens to incoming data fr ws after component mounts
   useEffect(() => {
@@ -37,7 +39,8 @@ const RoomPage: NextPage = () => {
       console.log("handshake successful [listener]");
 
       ws.onmessage = (msg) => {
-        console.log(JSON.parse(msg.data));
+        const MSG = JSON.parse(msg.data);
+        setChat((chat) => (chat ? [...chat, MSG] : [MSG]));
       };
     };
 
@@ -78,7 +81,7 @@ const RoomPage: NextPage = () => {
           a<span className="font-black text-slate-900">nani</span>chat
         </h1>
       </NavBar>
-      {room_id}
+      <ChatBoard room_id={room_id} chat={chat} />
       <ChatDock text={newText} setText={setNewText} />
     </div>
   );

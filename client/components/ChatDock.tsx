@@ -28,7 +28,7 @@ const ChatDock: React.FC<props> = ({ text, setText }) => {
   };
 
   return (
-    <div className="absolute bottom-0 flex flex-col w-full shadow-inner border-y-4">
+    <div className="fixed bottom-0 flex flex-col w-full shadow-inner border-y-4 bg-white">
       <form
         onSubmit={(e) => {
           e.preventDefault();

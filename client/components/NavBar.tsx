@@ -34,7 +34,7 @@ const NavBar: React.FC<props> = ({ children }) => {
   };
 
   return (
-    <div className="absolute top-0 flex flex-col w-full shadow-md select-none">
+    <div className="fixed top-0 flex flex-col w-full shadow-md select-none bg-white">
       <div className="flex w-full justify-between items-center px-8 py-4">
         {children}
         {user ? (
