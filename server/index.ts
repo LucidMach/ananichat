@@ -6,13 +6,15 @@ const app = express();
 const wss = new WebSocket.Server({ noServer: true });
 
 wss.on("connection", (ws: WebSocket) => {
-  console.log("A New Client Connected");
+  console.log("new client connected");
 
   ws.on("message", (data) => {
-    // console.log(data.toString());
     wss.clients.forEach((client) => {
       client.send(data.toString());
     });
+  });
+  ws.on("close", () => {
+    console.log("client disconnected");
   });
 });
 

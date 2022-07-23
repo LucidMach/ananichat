@@ -1,29 +1,63 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+
 import ChatDock from "../../components/ChatDock";
 import NavBar from "../../components/NavBar";
 import chatdata from "../../interfaces/chatdata";
 
+import { auth } from "../../utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+const ws_url = "ws://127.0.0.1:5000";
+
+/*
+MUST READ ME
+
+tried using a single socket connection for both pushing and listening to data from the server
+but unable to access a socket created in one useEffect in anothor useEffect
+
+so we make 2 connections now
+1. to listen to data from server
+2. to push data from server
+*/
+
 const RoomPage: NextPage = () => {
-  const [chat, setChat] = useState<chatdata[]>();
+  const [user, loading, error] = useAuthState(auth);
   const [newText, setNewText] = useState<chatdata>();
 
+  // listens to incoming data fr ws after component mounts
   useEffect(() => {
-    const ws = new WebSocket("ws://127.0.0.1:5000");
+    if (!loading && !user) Router.push("/");
+
+    const ws = new WebSocket(ws_url);
 
     ws.onopen = () => {
-      console.log("handshake successful");
-      ws.send(JSON.stringify(newText));
+      console.log("handshake successful [listener]");
 
       ws.onmessage = (msg) => {
-        console.log("msg from server: " + msg.data);
+        console.log(JSON.parse(msg.data));
       };
     };
 
     ws.onclose = () => {
-      console.log("client disconnected");
+      console.log("disconnected [listener]");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const ws = new WebSocket(ws_url);
+
+    ws.onopen = () => {
+      console.log("handshake successful [pusher]");
+      if (newText) ws.send(JSON.stringify(newText));
+      ws.close();
+    };
+
+    ws.onclose = () => {
+      console.log("disconnected [pusher]");
     };
   }, [newText]);
 

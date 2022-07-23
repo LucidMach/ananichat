@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 import DropMenu from "./DropMenu";
 import Button from "./Button";
-import Spinner from "./Spinner";
 
 interface props {
   children: JSX.Element[] | JSX.Element;
@@ -48,7 +47,7 @@ const NavBar: React.FC<props> = ({ children }) => {
             alt="user dp"
           />
         ) : (
-          <Spinner />
+          <></>
         )}
       </div>
       {menuActive ? (
