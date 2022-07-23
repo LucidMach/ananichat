@@ -1,12 +1,29 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import chatdata from "../interfaces/chatdata";
+import { auth } from "../utils/firebase";
 import Button from "./Button";
 import Input from "./Input";
 
-const ChatDock: React.FC = () => {
-  const [msg, setMsg] = useState<string>();
+interface props {
+  text: chatdata;
+  setText: Dispatch<SetStateAction<chatdata>>;
+}
+
+const ChatDock: React.FC<props> = ({ text, setText }) => {
+  const [user, loading, error] = useAuthState(auth);
+  const [msg, setMsg] = useState<string>("");
 
   const handleEnter = () => {
-    console.log(msg);
+    const chat: chatdata = {
+      msg: msg,
+      user: {
+        id: user.email,
+        pic: user.photoURL,
+      },
+    };
+
+    setText(chat);
     setMsg("");
   };
 

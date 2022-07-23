@@ -33,7 +33,7 @@ const JoinARoom: NextPage = () => {
           e.preventDefault();
           handleClick();
         }}
-        className="px-8 py-4 w-1/2 min-w-[300px] shadow-md flex flex-col justify-center items-center gap-4"
+        className="px-8 py-4 w-1/2 min-w-[320px] shadow-md flex flex-col justify-center items-center gap-4"
       >
         <h1 className="font-black ">JOIN A ROOM</h1>
         <div className="w-4/5">

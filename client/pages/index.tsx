@@ -13,8 +13,9 @@ const Home: NextPage = () => {
 
   const render = () => {
     if (loading) return <Spinner />;
-    if (user) Router.push("/lobby");
-    else
+    if (user) {
+      Router.push("/lobby");
+    } else
       return (
         <>
           <h1 className="font-thin italic font-mono text-slate-700">

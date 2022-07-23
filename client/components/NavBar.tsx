@@ -4,18 +4,24 @@ import { auth } from "../utils/firebase";
 
 import Image from "next/image";
 import Router from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import DropMenu from "./DropMenu";
 import Button from "./Button";
+import Spinner from "./Spinner";
 
 interface props {
   children: JSX.Element[] | JSX.Element;
 }
 
 const NavBar: React.FC<props> = ({ children }) => {
-  const [user] = useAuthState(auth);
+  const [user, loading, error] = useAuthState(auth);
   const [menuActive, setMenuActive] = useState(false);
+
+  useEffect(() => {
+    if (!loading && !user) Router.push("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClick = () => {
     setMenuActive((active) => !active);
@@ -42,7 +48,7 @@ const NavBar: React.FC<props> = ({ children }) => {
             alt="user dp"
           />
         ) : (
-          <></>
+          <Spinner />
         )}
       </div>
       {menuActive ? (
