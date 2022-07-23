@@ -17,11 +17,6 @@ const NavBar: React.FC<props> = ({ children }) => {
   const [user, loading, error] = useAuthState(auth);
   const [menuActive, setMenuActive] = useState(false);
 
-  useEffect(() => {
-    if (!loading && !user) Router.push("/");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const handleClick = () => {
     setMenuActive((active) => !active);
   };
@@ -34,7 +29,7 @@ const NavBar: React.FC<props> = ({ children }) => {
   };
 
   return (
-    <div className="fixed top-0 flex flex-col w-full shadow-md select-none bg-white">
+    <div className="fixed top-0 flex flex-col z-10 w-full shadow-md select-none bg-white">
       <div className="flex w-full justify-between items-center px-8 py-4">
         {children}
         {user ? (

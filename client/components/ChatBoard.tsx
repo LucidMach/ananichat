@@ -11,7 +11,7 @@ const ChatBoard: React.FC<props> = ({ chat, room_id }) => {
   const [user, loading, error] = useAuthState(auth);
 
   return (
-    <div className="absolute bottom-24 -z-10 w-full">
+    <div className="absolute bottom-24 z-0 w-full">
       {chat ? (
         chat.map((text, i) => {
           return (

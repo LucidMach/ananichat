@@ -29,10 +29,12 @@ const RoomPage: NextPage = () => {
   const [newText, setNewText] = useState<chatdata>();
   const [chat, setChat] = useState<chatdata[]>();
 
+  useEffect(() => {
+    !user ? Router.push("/") : null;
+  }, [user]);
+
   // listens to incoming data fr ws after component mounts
   useEffect(() => {
-    if (!loading && !user) Router.push("/");
-
     const ws = new WebSocket(ws_url);
 
     ws.onopen = () => {
@@ -68,7 +70,7 @@ const RoomPage: NextPage = () => {
   const { room_id } = route_data.query;
 
   return (
-    <div className="h-full w-full flex justify-center items-center flex-col gap-2">
+    <div className="w-full flex justify-center items-center flex-col gap-2">
       <NavBar>
         <Image
           src="/nani.jpg"

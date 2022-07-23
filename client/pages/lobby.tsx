@@ -1,14 +1,21 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Router from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 import Button from "../components/Button";
 import Input from "../components/Input";
 import NavBar from "../components/NavBar";
+import { auth } from "../utils/firebase";
 
 const JoinARoom: NextPage = () => {
+  const [user, loading, error] = useAuthState(auth);
   const [roomName, setRoomName] = useState<string>();
+
+  useEffect(() => {
+    !user ? Router.push("/") : null;
+  }, [user]);
 
   const handleClick = () => {
     Router.push(`/rooms/${roomName}`);
