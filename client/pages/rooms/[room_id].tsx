@@ -10,9 +10,6 @@ import chatdata from "../../interfaces/chatdata";
 import { auth } from "../../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import ChatBoard from "../../components/ChatBoard";
-
-const ws_url = "ws://127.0.0.1:5000";
-
 /*
 MUST READ ME
 
@@ -28,6 +25,10 @@ const RoomPage: NextPage = () => {
   const [user, loading, error] = useAuthState(auth);
   const [newText, setNewText] = useState<chatdata>();
   const [chat, setChat] = useState<chatdata[]>();
+
+  const route_data = useRouter();
+  const { room_id } = route_data.query;
+  const ws_url = "ws://127.0.0.1:5000/" + room_id;
 
   useEffect(() => {
     !user ? Router.push("/") : null;
@@ -65,9 +66,6 @@ const RoomPage: NextPage = () => {
       console.log("disconnected [pusher]");
     };
   }, [newText]);
-
-  const route_data = useRouter();
-  const { room_id } = route_data.query;
 
   return (
     <div className="w-full flex justify-center items-center flex-col gap-2">
