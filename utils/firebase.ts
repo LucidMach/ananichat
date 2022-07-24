@@ -4,7 +4,7 @@ import { GoogleAuthProvider, getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB8521G72x_T9yqQD6RHKoreCqaZsL9ffY",
+  apiKey: process.env.FIREBASE_API_KEY,
   authDomain: "wall-r.firebaseapp.com",
   databaseURL:
     "https://wall-r-default-rtdb.asia-southeast1.firebasedatabase.app",

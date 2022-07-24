@@ -28,7 +28,6 @@ const RoomPage: NextPage = () => {
 
   const route_data = useRouter();
   const { room_id } = route_data.query;
-  const ws_url = "ws://127.0.0.1:5000/" + room_id;
 
   useEffect(() => {
     !user ? Router.push("/") : null;
@@ -36,7 +35,7 @@ const RoomPage: NextPage = () => {
 
   // listens to incoming data fr ws after component mounts
   useEffect(() => {
-    const ws = new WebSocket(ws_url);
+    const ws = new WebSocket(process.env.WS_BASE_URL + room_id);
 
     ws.onopen = () => {
       console.log("handshake successful [listener]");
@@ -54,7 +53,7 @@ const RoomPage: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    const ws = new WebSocket(ws_url);
+    const ws = new WebSocket(process.env.WS_BASE_URL + room_id);
 
     ws.onopen = () => {
       console.log("handshake successful [pusher]");
