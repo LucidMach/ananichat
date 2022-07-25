@@ -35,7 +35,7 @@ const RoomPage: NextPage = () => {
 
   // listens to incoming data fr ws after component mounts
   useEffect(() => {
-    const ws = new WebSocket(process.env.WS_BASE_URL + room_id);
+    const ws = new WebSocket(process.env.NEXT_PUBLIC_WS_BASE_URL + room_id);
 
     ws.onopen = () => {
       console.log("handshake successful [listener]");
@@ -53,7 +53,7 @@ const RoomPage: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    const ws = new WebSocket(process.env.WS_BASE_URL + room_id);
+    const ws = new WebSocket(process.env.NEXT_PUBLIC_WS_BASE_URL + room_id);
 
     ws.onopen = () => {
       console.log("handshake successful [pusher]");

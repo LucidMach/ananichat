@@ -4,15 +4,15 @@ import { GoogleAuthProvider, getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "wall-r.firebaseapp.com",
   databaseURL:
     "https://wall-r-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "wall-r",
   storageBucket: "wall-r.appspot.com",
   messagingSenderId: "813819593299",
-  appId: "1:813819593299:web:0dafab7e011cf2c4083ca6",
-  measurementId: "G-S703GJ34SF",
+  appId: "1:813819593299:web:55509148895df357083ca6",
+  measurementId: "G-D901FRL2E6",
 };
 
 // Initialize Firebase
