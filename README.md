@@ -1,5 +1,3 @@
-> NOTE: this project uses branches to organise components of the project **[for easier deployment purposes ofcourse]**
-
 # Intro
 
 a**nani**chat is a truely decentralised chat app
@@ -17,7 +15,7 @@ built using the **TNT Stack** - **typescript**, **nextjs**, **tailwindcss**
 1. **client**
 
 ```
-$ git checkout client
+$ cd client
 $ yarn
 $ yarn dev
 ```
@@ -25,7 +23,7 @@ $ yarn dev
 2. **server**
 
 ```
-$ git checkout server
+$ cd server
 $ yarn
 $ yarn dev
 ```
